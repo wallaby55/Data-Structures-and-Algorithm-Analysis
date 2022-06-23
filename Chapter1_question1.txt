@@ -1,0 +1,104 @@
+package Chapter1;
+import java.lang.Math;
+
+/** This is a class that provides the solution to question1 in Mark ALlen Weiss'
+ *  textbook "Data Structures and Algorithm Analysis"
+ *
+ *  The question: write a program that solves the Selection problem.
+ *  **** SELECTION PROBLEM: Suppose you have a group of N numbers. Determine the
+ *  kth largest.
+ *
+ *  Written by Andrew Pauls
+ *  June 23, 2022
+ *  2nd year Computer Science student @ Brock University, Ont, Canada
+ *  Dedicated to otty.
+ */
+
+
+public class q1 {
+
+    int numValues = 100;
+    int [] values;
+
+    public q1 ( ) {
+
+        System.out.println(" First, we will generate 100 random values, assign them to an array, and then display the values to System.out");
+        produceValues(numValues);           // develops 100 random ints in an array
+        int k = getK();
+
+
+        displayValues(values);
+        System.out.println("Now, we will generate a kth value between 0 and 99. This value is: " + k);
+
+        int kthLargest = getKthlargest(k, values);
+        System.out.println("Of the " + numValues + ", " + kthLargest + " is the " +
+              k + "th largest");
+    }
+
+    /** method that takes as a parameter an arary of integers and displays each value on its own line to System.out
+     * @param vals
+     */
+    private void displayValues(int[] vals ) {
+        for ( int i = 0 ; i < vals.length ; i++ ) {
+            System.out.println(vals[i]);
+        }
+    }
+
+    /** method that finds the kth largest value in an array of unsorted integers
+     * takes 0(n^2) time ( definitely are more efficient algorithms for this task out there...)
+     * @param kValue
+     * @param nums
+     * @return
+     */
+    private int getKthlargest(int kValue, int[] nums) {
+        // get the smallest value in the array. set that value to max after finding it
+        // complete k iterations of this
+        // in the end, take the smallest value
+
+        int min = Integer.MAX_VALUE;
+        int index =0;
+
+        for (int i = 0; i < kValue - 1; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] < min) {
+                    min = nums[j];
+                    index = j;
+                }
+            }
+            nums[index] = Integer.MAX_VALUE;
+            min = nums[index];
+        }
+        // last iteration...
+        for (int k = 0; k < nums.length; k++) {
+            if (nums[k] < min) {
+                min = nums[k];
+            }
+        }
+        return min;
+    }
+
+
+    /** produces random numbers and inserts them into an array
+     *
+     * @param numberOfValues
+     */
+    private void produceValues( int numberOfValues ) {
+        values = new int[numberOfValues];
+        for ( int i = 0 ; i < numValues ; i++ ) {
+            int j = (int) ((int)100*Math.random()+1);
+            values[i] = j;
+        }
+    }
+
+    /** produces a single random value that will serve as the 'kth' value we want to find according to size
+     *
+     * @return
+     */
+    private int getK () {
+        return (int)((int)100*Math.random());
+    }
+
+
+    public static void main (String [] args ) { q1 q = new q1();}
+}
+
