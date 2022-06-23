@@ -1,0 +1,64 @@
+package Chapter1;
+import java.lang.Math.*;
+
+/** In this class, we solve a word search puzzle ( chapter1, question2 in Mark ALlen Weiss'
+ *  textbook "Data Structures and Algorithm Analysis")
+ *
+ *  In this class, I have prepared an array of words. These words are placed into a 2dimensional array,
+ *  and then the remaining empty spaces are filled with random letters.
+ *
+ *  The board is then displayed to the user on System.out.
+ *
+ *  The method "solve word search" then finds each word in the word search, and displays to System.out the 2x2 array with just the
+ *  letters belonging to found words visible.
+ *
+ *  Written by: Andrew Pauls
+ *  Computer Science student at Brock University, Ontario, Canada
+ *  June 23, 2022
+ *  Dedicated to Otty
+ */
+
+public class q2 {
+
+    char[] alphabet         = new char[]{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};                  // all of the letters of the alphabet
+    char[][] wordPuzzle     = new char[20][20];              // the 'board' that we need to solve ( 20 x 20 is arbitrarily sized )
+    String[] masterWordList = new String[]{"apple", "tractor", "venom", "platoon", "mongoose", "danger", "hoard", "elementary", "beach", "carnival", "gator", "jump", "umbrella", "yonder", "wait", "munch", "kangaroo", "water"};                // master word list, which 'subWordList' will always be derived from ( arbitrary length)
+    String[] subWordList    = new String[6];                 // a derivation of master word list, containing fewer words ( 6 )
+    public q2 ( ) {
+
+        // build the sub word list
+        buildSubWordList(masterWordList);
+        displayWordList(subWordList);
+
+        // build the board
+        insertWords(subWordList);
+        fillInEmptySpaces();
+        displayBoard(wordPuzzle);
+        // display the board
+
+    }
+    private void insertWords(String[] words) {
+        
+    }
+    //methods
+    private void displayWordList(String[] theList) {
+        System.out.println();
+        System.out.println("We are going to display the word list of the current word search: ");
+        for ( int i = 0 ; i < theList.length ; i++ ) {
+            System.out.println(theList[i]);
+        }
+        System.out.println("Those are the 6 words");
+        System.out.println();
+    }
+    private void buildSubWordList( String[] mList ) {
+        int i;
+        for ( int j = 0 ; j < 6 ; j++ ) {
+            i = (int) ((int)18*Math.random());
+            subWordList[j] = mList[i];
+        }
+    }
+
+
+    public static void main (String [] args) { q2 qq = new q2();}
+}
+
