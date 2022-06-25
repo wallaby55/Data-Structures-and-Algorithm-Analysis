@@ -32,6 +32,7 @@ public class q2 {
 
 
         // build the board
+        initBoard(wordPuzzle);
         insertWords(subWordList,wordPuzzle);
         displayBoard(wordPuzzle);
 
@@ -44,9 +45,22 @@ public class q2 {
         // now we need to solve the word search
         System.out.println();
         System.out.println("At this point, we have built up our board. Now we need to solve it");
-        solveBoard(wordPuzzle, subWordList);
+        char[][] fullySolvedBoard = solveBoard(wordPuzzle, subWordList);
+        System.out.println("Ok, so the board is hopefully solved at this point");
+        markEmpties(fullySolvedBoard);
+        displayBoard(fullySolvedBoard);
     }
-    private void solveBoard(char[][] board, String[] wordsToBeFound) {
+    private void markEmpties(char[][] solutionBoard ) {
+        for ( int i = 0 ; i < solutionBoard.length ; i++ ) {
+            for ( int j = 0 ; j < solutionBoard.length; j++ ) {
+                if ( solutionBoard[i][j] == ' ' ) {
+                    solutionBoard[i][j] = '*';
+                }
+            }
+        }
+    }
+
+    private char[][] solveBoard(char[][] board, String[] wordsToBeFound) {
         // for each word in the word list...
         char[][] solvedPuzzle = new char[20][20];
         initBoard(solvedPuzzle);
@@ -55,30 +69,157 @@ public class q2 {
             // scan the entire board for the first letter match
             for ( int q = 0 ; q < board.length ; q++ ) {
                 for ( int p = 0 ; p < board.length ; p++ ) {
-                    if ( board[q][p] == currentWord[i] ) {
+                    if ( board[q][p] == currentWord[0] ) {
                         // check all eight directions for word
-                        checkForWord(board, currentWord, q, p, solvedPuzzle);
+                        solvedPuzzle = findWord(board, currentWord, q, p, solvedPuzzle);
                     }
                 }
             }
         }
+        return solvedPuzzle;
     }
-    private void checkForWord(char[][] board, char[] currentWord, int xC, int yC, char[][] solution) {
+
+    private char[][] findWord(char[][] board, char[] currentWord, int xC, int yC, char[][] solution) {
+        // the general algorithm for finding the word and filling it in
+        // check if the word is where it may be
+        // if the word is there, start at the original location, fill in
+        // if the word is not there, do not fill in any letters
+        // repeat for all 8 directions
+
+
         // check up, right
+        // need to ensure that if the positions run out of bounds that something is terminated.
+        int counter = 1;
+        for (int i = 1; i < currentWord.length; i++) {
+            // check that were staying in bounds for the given direction
+            if (0 <= xC + currentWord.length & xC + currentWord.length < board.length & 0 <= yC - currentWord.length & yC - currentWord.length < board.length) {
+                if (board[xC + i][yC - i] == currentWord[i]) {
+                    counter++;
+                }
+            }
+        }
+
+        if (counter == currentWord.length) {
+            for (int j = 0; j < currentWord.length; j++) {
+                solution[xC + j][yC - j] = board[xC + j][yC - j];
+            }
+        }
+
+
         // check up, straight
+        counter = 1;
+        for (int q = 1; q < currentWord.length; q++) {
+            if (0 <= yC - currentWord.length & yC - currentWord.length < board.length) {
+                if (board[xC][yC - q] == currentWord[q]) {
+                    counter++;
+                }
+            }
+        }
+        if (counter == currentWord.length) {
+            for (int j = 0; j < currentWord.length; j++) {
+                solution[xC][yC - j] = board[xC][yC - j];
+            }
+        }
+
         // check up, left
+        counter = 1;
+        for (int i = 1; i < currentWord.length; i++) {
+            if (0 <= xC - currentWord.length & xC - currentWord.length < board.length & 0 <= yC - currentWord.length & yC - currentWord.length < board.length) {
+                if (board[xC - i][yC - i] == currentWord[i]) {
+                    counter++;
+                }
+            }
+        }
+        if (counter == currentWord.length) {
+            for (int j = 0; j < currentWord.length; j++) {
+                solution[xC - j][yC - j] = board[xC - j][yC - j];
+            }
+        }
+
         // check flat, left
+        counter = 1;
+        for (int i = 1; i < currentWord.length; i++) {
+            if (0 <= xC - currentWord.length & xC - currentWord.length < board.length) {
+                if (board[xC - i][yC] == currentWord[i]) {
+                    counter++;
+                }
+            }
+        }
+        if (counter == currentWord.length) {
+            for (int j = 0; j < currentWord.length; j++) {
+                solution[xC - j][yC] = board[xC - j][yC];
+            }
+        }
+
         // check down, left
+        counter = 1;
+        for (int i = 1; i < currentWord.length; i++) {
+            if (0 <= xC - currentWord.length & xC - currentWord.length < board.length & 0 <= yC + currentWord.length & yC + currentWord.length < board.length) {
+
+                if (board[xC - i][yC + i] == currentWord[i]) {
+                    counter++;
+                }
+            }
+        }
+        if (counter == currentWord.length) {
+            for (int j = 0; j < currentWord.length; j++) {
+                solution[xC - j][yC + j] = board[xC - j][yC + j];
+            }
+        }
+
         // check down, down
+        counter = 1;
+        for (int i = 1; i < currentWord.length; i++) {
+            if (0 <= yC + currentWord.length & yC + currentWord.length < board.length) {
+                if (board[xC][yC + i] == currentWord[i]) {
+                    counter++;
+                }
+            }
+        }
+        if (counter == currentWord.length) {
+            for (int j = 0; j < currentWord.length; j++) {
+                solution[xC][yC + j] = board[xC][yC + j];
+            }
+        }
+
         // check down, right
+        counter = 1;
+        for (int i = 1; i < currentWord.length; i++) {
+            if (0 <= xC + currentWord.length & xC + currentWord.length < board.length & 0 <= yC + currentWord.length & yC + currentWord.length < board.length) {
+                if (board[xC + i][yC + i] == currentWord[i]) {
+                    counter++;
+                }
+            }
+        }
+        if (counter == currentWord.length) {
+            for (int j = 0; j < currentWord.length; j++) {
+                solution[xC + j][yC + j] = board[xC + j][yC + j];
+            }
+        }
+
         // check flat, right
+        counter = 1;
+        for (int i = 1; i < currentWord.length; i++) {
+            if (0 <= xC + currentWord.length & xC + currentWord.length < board.length) {
+                if (board[xC + i][yC] == currentWord[i]) {
+                    counter++;
+                }
+            }
+        }
+        if (counter == currentWord.length) {
+            for (int j = 0; j < currentWord.length; j++) {
+                solution[xC + j][yC] = board[xC + j][yC];
+            }
+        }
+        return solution;
     }
-    private void fillInBoard(char[][] board) {
-        for ( int i = 0 ; i < board.length ; i++ ) {
-            for ( int j = 0 ; j < board.length ; j++ ) {
+
+    private void fillInBoard(char[][] theBoard) {
+        for ( int i = 0 ; i < theBoard.length ; i++ ) {
+            for ( int j = 0 ; j < theBoard.length ; j++ ) {
                 int q = (int) ((int) alphabet.length * Math.random());
-                if ( board[i][j] == ' ' ) {
-                    board[i][j] = alphabet[q];
+                if ( theBoard[i][j] == ' ' ) {
+                    theBoard[i][j] = alphabet[q];
                 }
             }
         }
@@ -110,8 +251,10 @@ public class q2 {
         }
     }
     private void insertWords(String[] words, char[][] theBoard) {
+
         // for each word that needs to be inserted
         for (int i = 0; i < words.length; i++) {
+
             // turn the word into a char array
             char[] currentWord = words[i].toCharArray();
             // randomly generate coordinates for the first letter
@@ -164,6 +307,7 @@ public class q2 {
                     xChange = (int) ((int) 4 * Math.random() - 2);                        // generates a random val such that -1 <= x <= 1
                     xDirectionIsValid = (0 <= xCoordinate + currentWord.length * xChange & xCoordinate + currentWord.length * xChange < theBoard.length);
                 }
+
                 while ( xChange == 0 & yChange == 0 ) {
                     // generates a random val such that -1 <= x <= 1
                     yChange = (int) ((int) 4 * Math.random() - 2);
