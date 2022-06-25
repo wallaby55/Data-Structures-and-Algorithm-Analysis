@@ -1,0 +1,50 @@
+package Chapter1;
+
+import java.util.SortedMap;
+
+public class q3 {
+
+    public q3 ( ) {
+
+        int someValOO = 0;
+       int someVal = -10;
+       int someVal1_1 = 10;
+       int someVal2 = 1002;
+       int someVal3 = 3823748;
+
+       // how we gon do this?
+
+       printDigit(someVal);
+
+        System.out.println();
+        printDigit(someValOO);
+        System.out.println();
+        printDigit(someVal1_1);
+        System.out.println();
+        printDigit(someVal2);
+        System.out.println();
+       printDigit(someVal3);
+    }
+
+    private void printDigit ( int d ) {
+
+        int r = d;
+        if (r < 0) {
+            System.out.print('-');
+            r = r * -1;
+            if (r >= 10) {
+                printDigit(r / 10);
+            }
+            System.out.print(r % 10);
+        }
+        if (d >= 0) {
+            if (d >= 10) {
+                printDigit(d / 10);
+            }
+            System.out.print(d / 10);
+        }
+    }
+
+    public static void main ( String [] args ) { q3 qThree = new q3 ();}
+}
+
