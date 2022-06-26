@@ -1,0 +1,54 @@
+package Chapter1;
+
+/**
+ * This class is the solution to q5, chapter1 in Mark ALlen Weiss'
+ *  *  textbook "Data Structures and Algorithm Analysis"
+ *
+ *  The question reads: Write a recursive method that returns the number of 1’s in the binary representation
+ * of N. Use the fact that this is equal to the number of 1’s in the representation of N/2,
+ * plus 1, if N is odd.
+ *
+ * Solution written by : Andrew Pauls
+ * Computer Science student at Brock University, Ontario, Canada
+ * June 25, 2022
+ * Dedicated to otty
+ */
+
+
+public class q5 {
+
+    public q5 () {
+        int x = 4;
+        int y = 5;
+        int z = 14;
+        int b = 29;
+        int c = 43;
+        int d = 134;
+        int e = 3426;
+        int f = 234897;
+        int g = 10394232;
+
+        printNumberOfOnes(x);
+        printNumberOfOnes(y);
+        printNumberOfOnes(z);
+
+    }
+
+    // methods
+    private void printNumberOfOnes(int theNum) {
+        // general approach: begin at 0, determine how many bits we need
+        // if its odd, add one last bit.
+        System.out.println();
+        if ( theNum == 0 ) System.out.println("number of ones is: " + 0);
+        int grower = 1;
+        int numOnes = 0;
+        while ( grower <= theNum ) {
+            grower*=2;
+            numOnes++;
+        }
+        System.out.println("number of ones is: " + numOnes);
+    }
+
+    public static void main (String [] args) { q5 qqq555 = new q5 ();}
+}
+
