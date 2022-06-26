@@ -5,7 +5,10 @@ package Chapter1;
  *
  *  The question asks us to: Write a method to output an arbitrary double number (which might be negative)
  * using only printDigit for I/O.
- * 
+ *
+ *
+ * FIRST: I will modify the textbooks example of printing out a positive integer ( I will make the method print out negative ints as well as positive )
+ *
  * Solution written by : Andrew Pauls
  * Computer Science major @ Brock University, Ontario, Canada
  * Date: June 25, 2022
@@ -18,44 +21,59 @@ public class q3 {
 
     public q3 ( ) {
 
-        int someValOO = 0;
-       int someVal = -10;
-       int someVal1_1 = 10;
-       int someVal2 = 1002;
-       int someVal3 = 3823748;
+       printDigit(5);
+       System.out.println();
+       printDigit(134);
+       System.out.println();
+       printDigit(10349);
 
-       // how we gon do this?
 
-       printDigit(someVal);
+       System.out.println();
+       System.out.println("Now lets work on getting negatives to work");
 
-        System.out.println();
-        printDigit(someValOO);
-        System.out.println();
-        printDigit(someVal1_1);
-        System.out.println();
-        printDigit(someVal2);
-        System.out.println();
-       printDigit(someVal3);
+       printDigitNegatives(-5);
+       System.out.println();
+       printDigitNegatives(-134);
+       System.out.println();
+       printDigitNegatives(-10349);
+    }
+    private void printDigitNegatives(int g ) {
+        // we only want to do mod10 on positive values...
+
+
+        if (g >= 10) printDigit(g);
+
+
+        if ( g <= - 10 ) {
+            printDigitNegatives(g/10);
+        }
+        //while ( d < 0 ) d+=10;
+        System.out.print(g%10);
     }
 
+
+    /** This method works by:
+     * checking if the integer we pass is greater than 10.
+     * If it is, we call the method again with the original number divided by 10
+     * This will continue to take place until we have a number that is greater than
+     * zero but less than 10.
+     * At this point, we print out the first digit mod 10,
+     * meaning that we print the remainder
+     * The recursive calls of course close in reverse order, printing each following number
+     *
+     * Question...Don't we get decimals really quickly?
+     * Answer to myself: Yes, technically. Java will automatically round to int tho
+     *
+     * @param d
+     */
     private void printDigit ( int d ) {
-
-        int r = d;
-        if (r < 0) {
-            System.out.print('-');
-            r = r * -1;
-            if (r >= 10) {
-                printDigit(r / 10);
-            }
-            System.out.print(r % 10);
+        if (d >= 10) {
+            printDigit(d / 10);
         }
-        if (d >= 0) {
-            if (d >= 10) {
-                printDigit(d / 10);
-            }
-            System.out.print(d / 10);
-        }
+        System.out.print(d % 10);
     }
+
+
 
     public static void main ( String [] args ) { q3 qThree = new q3 ();}
 }
