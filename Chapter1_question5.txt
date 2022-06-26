@@ -29,25 +29,40 @@ public class q5 {
         int g = 10394232;
 
         printNumberOfOnes(x);
+        System.out.println();
         printNumberOfOnes(y);
+        System.out.println();
         printNumberOfOnes(z);
+        System.out.println();
+        printNumberOfOnes(b);
+        System.out.println();
+        printNumberOfOnes(c);
+        System.out.println();
+        printNumberOfOnes(d);
+        System.out.println();
+        printNumberOfOnes(e);
+        System.out.println();
+        printNumberOfOnes(f);
+        System.out.println();
+        printNumberOfOnes(g);
+
+        System.out.println();
+        printNumberOfOnes(32);
 
     }
 
     // methods
     private void printNumberOfOnes(int theNum) {
-        // general approach: begin at 0, determine how many bits we need
-        // if its odd, add one last bit.
-        System.out.println();
-        if ( theNum == 0 ) System.out.println("number of ones is: " + 0);
-        int grower = 1;
-        int numOnes = 0;
-        while ( grower <= theNum ) {
-            grower*=2;
-            numOnes++;
+
+        if (theNum == 0) { return;
         }
-        System.out.println("number of ones is: " + numOnes);
-    }
+
+        if ( theNum % 2 != 0 ) {
+            System.out.print(1);
+            theNum = theNum -1;
+        }
+        printNumberOfOnes(theNum/2);
+        }
 
     public static void main (String [] args) { q5 qqq555 = new q5 ();}
 }
