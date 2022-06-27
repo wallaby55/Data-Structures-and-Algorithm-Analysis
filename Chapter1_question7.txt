@@ -1,0 +1,45 @@
+package Chapter1;
+/** This class is the solution to chapter1, question 7 of Mark ALlen Weiss'
+ *  *  textbook "Data Structures and Algorithm Analysis"
+ *
+ *  The question reads:
+ *  Prove the following formulas:
+ * a. log X < X for all X > 0
+ * b. log(A ^B ) = B log A
+ *
+ * Solution written by: Andrew Pauls
+ * Computer Science student studying at Brock University, Ontario, Canada
+ * June 26, 2022
+ * Dedicated to otty.
+ **/
+
+
+// Note that this is a simple mathematical proof and does not require computing
+
+/**
+ *
+ * a)  log X < X for all X > 0
+ *     Sol. If 0 < X < base, then the base is greater than X.
+ *     If ( base > X ), and ( X > 0 ), then the log of X must be negative,
+ *     for the base has to be put to a negative exponent to amount to X.
+ *
+ *     If  ( X = base ) , the result is 1. If we were at this point attempting to
+ *     complete this proof where the base could be any positive value, the proof would
+ *     be impossible, for log(base 0.5) of 0.5 would be 1, and 1 !< 0.5
+ *
+ *     Assuming that the question wants us to prove for log(X) where base is always 2,
+ *     we see that if base = X we have a result of 1, and 1 < 2
+ *
+ *     In the final case where X is greater than 2, the base is less than X,
+ *     meaning that base^y is 2 times itself as many times as is needed to equate to
+ *     X. If 2 is multiplied against itself as many times as a number X which is larger than 2,
+ *     2 has doubled as many times as the number itself - which is absurd.
+ *
+ *
+ *
+ * b)  log(A ^B ) = B log A
+ *     logA = y
+ *     y^B
+ *
+ */
+
