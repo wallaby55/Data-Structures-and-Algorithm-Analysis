@@ -1,0 +1,55 @@
+package Chapter1;
+
+public class Collection<anyType> {
+
+    /** This class represents the solution to exercise 13 of chapter 1 in Mark ALlen Weiss'
+     *  *  textbook "Data Structures and Algorithm Analysis"
+     *
+     * The exercise reads:
+     * Design a generic class, Collection , that stores a collection of Object s (in an array),
+     * along with the current size of the collection. Provide public methods isEmpty ,
+     * makeEmpty , insert , remove , and isPresent . isPresent(x) returns true if and only if
+     * an Object that is equal to x (as deﬁned by equals ) is present in the collection.
+     *
+     * Written by: Andrew Pauls
+     * Computer Science student at Brock University, Ontario Canada
+     * June 27, 2022
+     * Dedicated to otty.
+     */
+
+
+    public Collection<Integer> (Integer...i ) {
+
+            // constructor
+
+        }
+
+        // methods
+        private boolean isEmpty(){
+            return false;
+        }
+
+        private void makeEmtpy(){
+
+        }
+
+        private void insert ( ) {
+
+        }
+
+        private void remove() {
+
+        }
+
+        private boolean isPresent () {
+            return false;
+        }
+
+
+
+
+        public static void main (String [] args) { q13 qqq13 = new q13();}
+    }
+
+}
+
