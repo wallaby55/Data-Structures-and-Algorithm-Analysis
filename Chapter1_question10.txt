@@ -1,0 +1,14 @@
+This file contains the solution to question 10 in chapter 1 of Mark ALlen Weiss'
+textbook "Data Structures and Algorithm Analysis".
+
+The question reads:
+
+What is 2^100 (mod 5)?
+
+My solution:
+Immediately one sees that computing 2^100, and then taking mod5 will return the correct answer.
+2^100 = 1,267,650,600,228,229,401,496,703,205,376
+The above value, mod5 = 1 ( which is obvious from the final digit being a 6 )
+This solution is extremely elementary and I suspect not at all what we were supposed to come up with.
+There is likely a very simple proof to show that the answer is 1. 
+I am satisfied with my efforts for now however. 
