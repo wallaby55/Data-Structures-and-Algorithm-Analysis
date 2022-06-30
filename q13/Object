@@ -1,0 +1,12 @@
+package Chapter1;
+
+public class Object<E> {
+
+    E theOb;
+
+    public Object ( E theOb ) {
+        this.theOb = theOb;
+    }
+
+}
+

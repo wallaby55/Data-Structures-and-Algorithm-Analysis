@@ -1,0 +1,43 @@
+package Chapter1;
+
+public class Collection<E> {
+
+    int size;
+    Object[] dataStructure;
+
+
+    public Collection (  ) {
+        dataStructure = new Object[10];
+        int size = 0;
+    }
+
+    public boolean isEmpty () {
+        return (size == 0);
+    }
+
+    public void makeEmpty () {
+        for( int i = 0 ; i< size; i++ ) {
+            dataStructure[i] = null;
+        }
+        size = 0;
+    }
+
+    public void insert ( Object theItem ) {
+
+        dataStructure[size] = theItem;
+        size++;
+    }
+
+    public void remove ( ) {
+        dataStructure[size - 1] = null;
+        size--;
+    }
+
+    public boolean isPresent(Object item){
+        for ( int i = 0 ; i < size ; i++ ) {
+            if ( dataStructure[i] == item) return true;
+        }
+        return false;
+    }
+}
+

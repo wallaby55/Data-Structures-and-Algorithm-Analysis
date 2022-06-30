@@ -1,0 +1,19 @@
+package Chapter1;
+
+public class CollectionImpl {
+
+
+    Collection<Integer> theIntColl = new Collection<>();
+    Collection<String> theStringColl = new Collection<>();
+    Collection<Double> theDoubColl   = new Collection<>();
+
+    public CollectionImpl ( ) {
+        System.out.println("The Int Coll is empty: " + theIntColl.isEmpty());
+        theIntColl.insert(4);
+        theIntColl.insert(444);
+    }
+
+    public static void main (String [] args) { CollectionImpl cl = new CollectionImpl();}
+
+}
+
